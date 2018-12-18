@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>视频检查</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/static/css/main_jc.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/videoControls_jc.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/jquery.sweet-dropdown.min.css}" />
+    <script th:src="@{/static/js/jquery-1.11.0.min.js}" type="text/javascript" charset="utf-8"></script>
+    <script th:src="@{/static/js/videoControl_jc.js}" type="text/javascript" charset="utf-8"></script>
+    <script th:src="@{/static/js/application.js}" type="text/javascript"></script>
+    <script th:src="@{/static/js/jquery.sweet-dropdown.min.js}"></script>
+    <style type="text/css">
+        .layoutRoot{
+            width: 600px;
+            margin: 0 auto;
+        }
+        .fix{
+            width:100%;
+            height: 65px;
+            background-color: #cccccc;
+        }
+        .fixed{
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        .content{
+            background-color: #c3f0ff;
+            height: 840px;
+        }
+        
+    </style>
+</head>
+<body>
+<div>
+    <div style="position: absolute;top: 165px;">
+        <table border="1" id="resultTable">
+            <tr>
+                <td>开始时间</td>
+                <td>结束时间</td>
+                <td>标注结果</td>
+            </tr>
+        </table>
+        <span>
+            <p></p>
+            <textarea id="backReason" placeholder="打回原因" style="width: 335px;height: 100px;resize:none" maxlength="200"></textarea>
+            <!--<input id="backReason" placeholder="打回原因">-->
+            <p></p>
+            <button class="button blue" onclick="jc_button(0)">打回</button>
+            <button class="button blue" onclick="jc_button(1)">通过</button>
+        </span>
+    </div>
+    <h1>视频时间切分检查工具</h1>
+    <div class="dropdown-menu dropdown-anchor-top-left dropdown-has-anchor blue" id="dropdown-with-icons">
+        <ul th:each="file : ${fileList}">
+            <li th:id="${file.id}" onclick="checkfiles(this.id)"><a href="#" th:text="${file.fileName}"> Item 1</a></li>
+        </ul>
+    </div>
+    <div style="text-align: center">
+        <p th:text="${mark_rules}"></p>
+        <label id="checkStatus"></label>
+        <button class="button special bordered" data-dropdown="#dropdown-with-icons" id="files">文件列表</button>
+        <span id="playing"></span>
+    </div>
+
+    <video src="" data-framerate="25" width="50%" id="DEMO">
+    </video>
+</div>
+</body>
+</html>

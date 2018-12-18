@@ -1,0 +1,5 @@
+{
+  "q_taskfile_api":"http://61.191.24.229:5021/mark-api/openapi/q_taskfiles",
+  "s_result_api":"http://61.191.24.229:5021/mark-api/openapi/s_result",
+  "check_api":"http://61.191.24.229:5021/mark-api/openapi/check"
+}

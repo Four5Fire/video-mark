@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>视频标注</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/static/css/main_bz.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/videoControls_bz.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/jquery.sweet-dropdown.min.css}" />
+    <script th:src="@{/static/js/jquery-1.11.0.min.js}" type="text/javascript" charset="utf-8"></script>
+    <script th:src="@{/static/js/videoControl_bz.js}" type="text/javascript" charset="utf-8"></script>
+    <script th:src="@{/static/js/application.js}" type="text/javascript"></script>
+    <script th:src="@{/static/js/jquery.sweet-dropdown.min.js}"></script>
+</head>
+<body>
+
+<div>
+    <h1>视频时间切分标记工具</h1>
+    <div class="dropdown-menu dropdown-anchor-top-left dropdown-has-anchor blue" id="dropdown-with-icons">
+        <ul th:each="file : ${fileList}">
+            <li th:id="${file.id}" onclick="checkfiles(this.id)"><a href="#" th:text="${file.fileName}"> Item 1</a></li>
+        </ul>
+    </div>
+    <div style="text-align: center">
+        <p th:text="${mark_rules}"></p>
+        <div align="center" >
+            <label id="checkStatus"></label>
+            <button id="displayStatus" style="display: none" onclick="displayReason()">查看打回原因</button>
+        </div>
+
+        <button class="button special bordered" data-dropdown="#dropdown-with-icons" id="files">文件列表</button>
+        <span id="playing"></span>
+    </div>
+
+    <video src="" data-framerate="25" width="50%" id="DEMO">
+    </video>
+</div>
+</body>
+</html>

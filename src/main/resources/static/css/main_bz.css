@@ -1,0 +1,23 @@
+body {
+   font-size: 16px;
+   font-family: 微软雅黑,宋体,Arial,Helvetica,Verdana,sans-serif;
+   /*line-height: 1.5em;*/
+ }
+
+h1,h3 {
+  text-align: center;
+}
+
+table {
+  margin: auto;
+  border-collapse:collapse;
+  table-layout: fixed;
+}
+
+table, th, td, tr
+{
+  word-break: break-word;
+  width: 150px;
+  line-height: 44px;
+}
+
