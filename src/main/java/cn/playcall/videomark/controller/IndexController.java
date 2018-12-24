@@ -49,6 +49,16 @@ public class IndexController {
         jsonObject.put("fileName",taskFile.getFileName());
         jsonObject.put("cdnAddress",taskFile.getCdnAddress());
         jsonObject.put("checkStatus",taskFile.getCheckStatus());
+        if (taskFile.getIsbad() != 1){
+            jsonObject.put("isbad",0);
+        }else {
+            jsonObject.put("isbad",1);
+        }
+        if (taskFile.getResultExport() == null){
+            jsonObject.put("markStatus",0);
+        }else {
+            jsonObject.put("markStatus",1);
+        }
         jsonObject.put("backReason",taskFile.getBackReason());
         if (userInfo.getType().equals("check")){
             System.out.println(taskFile.getResultTxt());
@@ -75,12 +85,14 @@ public class IndexController {
     public ResponseEntity<JSONObject> receiveResult(HttpServletRequest request,@RequestBody JSONObject jsonObject){
         HttpSession session = request.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+        String isbad = jsonObject.getString("isBad");
+        jsonObject.remove("isBad");
         System.out.println(jsonObject);
         String resultContent = JSON.toJSONString(jsonObject);
         String uid = userInfo.getUid();
         String fileId = (String) session.getAttribute("fileId");
         JSONObject resultStatus = new JSONObject();
-        resultStatus = HttpClient.postResult(uid,fileId,resultContent,jsonObject.getString("isBad"));
+        resultStatus = HttpClient.postResult(uid,fileId,resultContent,isbad);
         return new ResponseEntity<JSONObject>(resultStatus,HttpStatus.OK);
     }
 

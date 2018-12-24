@@ -2,6 +2,7 @@ package cn.playcall.videomark.server;
 
 import cn.playcall.videomark.entity.TaskFile;
 import cn.playcall.videomark.entity.UserInfo;
+import cn.playcall.videomark.interceptor.IndexInterceptor;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.http.HttpEntity;
@@ -19,8 +20,10 @@ import java.util.Map;
 
 public class HttpClient {
 
-    private static String appid = "f78074";
-    private static String appkey = "1e4097";
+    private static String appid = "";
+    private static String appkey = "";
+    public static String username = "";
+    public static String password = "";
     private static String q_taskfile_api = "";
     private static String s_result_api = "";
     private static String check_api = "";
@@ -35,6 +38,10 @@ public class HttpClient {
             }
             brConfigData.close();
             JSONObject jsonObject = JSONObject.parseObject(content);
+            appid = jsonObject.getString("appid");
+            appkey = jsonObject.getString("appkey");
+            username = jsonObject.getString("username");
+            password = jsonObject.getString("password");
             q_taskfile_api = jsonObject.getString("q_taskfile_api");
             s_result_api = jsonObject.getString("s_result_api");
             check_api = jsonObject.getString("check_api");
@@ -99,18 +106,21 @@ public class HttpClient {
         headers.add("salt", String.valueOf(salt));
         JSONObject postData = new JSONObject();
         postData.put("result_txt",result);
-        postData.put("result_export","1");
-        postData.put("export_name","");
+        postData.put("result_export","json");
+//        postData.put("export_name","");
         postData.put("isbad",isBad);
         postData.put("uid",uid);
         postData.put("file_id",fileId);
         postData.put("back_reason","");
         postData.put("checkStatus",0);
+        System.out.println(postData);
         HttpEntity<JSONObject> httpEntity = new HttpEntity<>(postData,headers);
         RestTemplate restTemplate = new RestTemplate();
         JSONObject postResult = new JSONObject();
+        System.out.println(headers);
         try{
             postResult = restTemplate.postForEntity(s_result_api, httpEntity, JSONObject.class).getBody();
+            System.out.println(postResult);
         }finally {
             return postResult;
         }
@@ -161,4 +171,5 @@ public class HttpClient {
         }
         return jsonObject;
     }
+
 }

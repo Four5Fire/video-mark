@@ -135,14 +135,16 @@ jQuery.fn.videoControls = function () {
 
                 });
                 instance.wrapper.find('#type').val("");
+                alert("标注成功");
             }
             return false;
         });
 
         instance.wrapper.find('#submitAll').click(function () {
             var r = confirm("确认提交本文件结果吗");
+            var isBad = $("#isBad option:selected").val();
             if (r === true) {
-                if (annotations.length === 0) {
+                if (annotations.length === 0&&isBad == 0) {
                     alert("未标记任何结果提交失败");
                 } else {
                     var sss = {
@@ -156,6 +158,7 @@ jQuery.fn.videoControls = function () {
                         segaments: annotations,
                         isBad:$("#isBad option:selected").val()
                     };
+                    console.log(annotations);
                     sss = JSON.stringify(sss);
                     console.log(sss);
                     $.ajax({
@@ -164,7 +167,7 @@ jQuery.fn.videoControls = function () {
                         data:sss,
                         contentType: 'application/json;charset=utf-8',
                         success: function (data) {
-                            alert("操作成功");
+                            alert(data.retdesc);
                         },
                         error: function (data) {
                             console.log(data);
@@ -355,6 +358,11 @@ function checkfiles(id) {
         success: function (data) {
             console.log(data);
             document.getElementById("DEMO").src = data.cdnAddress;
+            if (data.markStatus == 0){
+                document.getElementById("markStatus").innerText="标注状态：未标注";
+            } else {
+                document.getElementById("markStatus").innerText="标注状态：已标注"
+            }
             if (data.checkStatus == 0){
                 document.getElementById("checkStatus").innerText="检查状态：待检查";
                 $('#displayStatus').hide();
@@ -367,6 +375,7 @@ function checkfiles(id) {
                 $('#displayStatus').show();
             }
 
+            document.getElementById("isBad").options[data.isbad].selected=true;
             $('#playing').text('正在播放：' + data.fileName);
             filename = data.fileName;
             taskid = data.taskid;
@@ -427,8 +436,9 @@ function delType() {
     }
     if (!flag){
         alert("无此标注");
+    }else {
+        alert("删除成功");
     }
-    console.log(annotations);
 }
 
 function displayReason() {

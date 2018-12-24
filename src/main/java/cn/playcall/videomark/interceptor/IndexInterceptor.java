@@ -9,13 +9,12 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
 
 public class IndexInterceptor extends HandlerInterceptorAdapter {
 
-    private String userName = "casiaVideoMark";
-    private String password = "123abc";
+    private static String username = HttpClient.username;
+    private static String password = HttpClient.password;
 
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -38,7 +37,7 @@ public class IndexInterceptor extends HandlerInterceptorAdapter {
             response.sendError(422);
             return false;
         }
-        if (tokenPass(salt+userName+password+unixTime+salt,token)){
+        if (tokenPass(salt+ username +password+unixTime+salt,token)){
             UserInfo userInfo = new UserInfo(uid, taskid,type);
             HttpSession session = request.getSession();
 
@@ -74,4 +73,6 @@ public class IndexInterceptor extends HandlerInterceptorAdapter {
         }
         return false;
     }
+
+
 }

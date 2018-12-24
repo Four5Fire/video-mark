@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 public class ResultInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("执行Result Interceptor");
         HttpSession session = request.getSession(false);
         if (session == null){
             System.out.println("user no session");
