@@ -41,10 +41,10 @@ public class IndexInterceptor extends HandlerInterceptorAdapter {
             UserInfo userInfo = new UserInfo(uid, taskid,type);
             HttpSession session = request.getSession();
 
-            if (!HttpClient.getTaskFiles(userInfo)){
-                response.sendError(500,"api q_taskfile error");
-                return false;
-            }
+//            if (!HttpClient.getTaskFiles(userInfo)){
+//                response.sendError(500,"api q_taskfile error");
+//                return false;
+//            }
             session.setAttribute("userInfo",userInfo);
 
             return true;

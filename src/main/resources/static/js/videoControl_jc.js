@@ -51,6 +51,8 @@ jQuery.fn.videoControls = function () {
                 '</div>' +
                 '<div>' +
                 '<button class="button blue" id="play">播放</button>' +
+                '<button class="button blue" onclick="jc_button(0)">打回</button>'+
+                '<button class="button blue" onclick="jc_button(1)">通过</button>'+
                 '</div>'
             );
         //更新时间
@@ -289,9 +291,9 @@ function checkfiles(id) {
             taskid = data.taskid;
             segaments = data.segaments;
             document.getElementById("resultTable").innerHTML = "<tr>\n" +
-                "            <td>开始时间</td>\n" +
-                "            <td>结束时间</td>\n" +
-                "            <td width='100'>标注结果</td>\n" +
+                "            <th>开始时间</th>\n" +
+                "            <th>结束时间</th>\n" +
+                "            <th width='100'>标注结果</th>\n" +
                 "        </tr>";
             segamentsSort();
             $('#annotations tr:not(:first)').html("");
@@ -315,6 +317,7 @@ function checkfiles(id) {
 }
 
 function jc_button(type) {
+    alert("tonggu")
     var backReason = document.getElementById("backReason").value;
     var sss = {
         status:type,
