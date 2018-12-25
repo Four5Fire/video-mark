@@ -60,11 +60,11 @@ jQuery.fn.videoControls = function () {
                 '<tr><td colspan=5>总时长</td><td colspan=10 id="dur"></td></tr>' +
                 '</table>' +
                 '<table>' +
-                '<tr><td colspan=5>标注类别</td><td><input style="width: 100%" type="text" name="type" id="type" maxlength="50"></td><td colspan=5><input class="button special" type="submit" value="裁切" id="cut"></td></tr>' +
+                '<tr><td colspan=5>标注类别</td><td><input style="width: 100%;height: 30px;" type="text" name="type" id="type" maxlength="50"></td><td colspan=5><input class="button special" type="submit" value="裁切" id="cut"></td></tr>' +
                 '</table>' +
                 '</table>' +
                 '<table>' +
-                '<tr><td colspan=5>删除标注</td><td><input style="width: 100%" type="text" name="type" id="delNum" placeholder="填写删除序号" maxlength="10"></td><td colspan=5><input class="button special" type="submit" value="删除" onclick="delType()"></td></tr>' +
+                '<tr><td colspan=5>删除标注</td><td><input style="width: 100%;height: 30px;" type="text" name="type" id="delNum" placeholder="填写删除序号" maxlength="10"></td><td colspan=5><input class="button special" type="submit" value="删除" onclick="delType()"></td></tr>' +
                 '</table>' +
                 '<h3>已标注内容</h3>' +
                 '<table id="annotations">' +
