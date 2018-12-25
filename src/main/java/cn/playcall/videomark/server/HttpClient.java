@@ -3,6 +3,7 @@ package cn.playcall.videomark.server;
 import cn.playcall.videomark.entity.TaskFile;
 import cn.playcall.videomark.entity.UserInfo;
 import cn.playcall.videomark.interceptor.IndexInterceptor;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.http.HttpEntity;
@@ -105,7 +106,7 @@ public class HttpClient {
         headers.add("salt", String.valueOf(salt));
         JSONObject postData = new JSONObject();
         postData.put("result_txt",result);
-        postData.put("result_export","json");
+        postData.put("result_export", JSON.toJSONString(result));
 //        postData.put("export_name","");
         postData.put("isbad",isBad);
         postData.put("uid",uid);
