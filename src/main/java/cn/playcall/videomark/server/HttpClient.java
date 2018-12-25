@@ -94,7 +94,7 @@ public class HttpClient {
         return true;
     }
 
-    public static JSONObject postResult(String uid, String fileId, String result,String isBad){
+    public static JSONObject postResult(String uid, String fileId, JSONObject result,String isBad){
         long uTime = System.currentTimeMillis();
         int salt = (int)((Math.random()*9+1)*100000);
         String token = HttpClient.getToken(uTime,salt);
@@ -105,8 +105,8 @@ public class HttpClient {
         headers.add("time", String.valueOf(uTime));
         headers.add("salt", String.valueOf(salt));
         JSONObject postData = new JSONObject();
-        postData.put("result_txt",result);
-        postData.put("result_export", JSON.toJSONString(result));
+        postData.put("result_txt",JSON.toJSONString(result));
+        postData.put("result_export", result);
 //        postData.put("export_name","");
         postData.put("isbad",isBad);
         postData.put("uid",uid);
