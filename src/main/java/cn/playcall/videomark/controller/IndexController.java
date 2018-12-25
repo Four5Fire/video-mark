@@ -103,7 +103,6 @@ public class IndexController {
         jsonObject.put("uid",userInfo.getUid());
         JSONObject resultStatus = new JSONObject();
         resultStatus = HttpClient.postCheckResult(jsonObject);
-
         System.out.println(resultStatus);
         return new ResponseEntity<JSONObject>(resultStatus,HttpStatus.OK);
     }
