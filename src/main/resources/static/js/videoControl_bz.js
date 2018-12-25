@@ -167,7 +167,6 @@ jQuery.fn.videoControls = function () {
                         data:sss,
                         contentType: 'application/json;charset=utf-8',
                         success: function (data) {
-                            $('#checkStatus').text("");
                             if (data.retcode == "000000"){
                                 $('#markStatus').text("标注状态：已标注");
                             }
