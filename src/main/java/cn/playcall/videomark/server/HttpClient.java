@@ -78,7 +78,6 @@ public class HttpClient {
         String code = (String) postResult.get("code");
         String mark_rules = (String) postResult.get("mark_rules");
         userInfo.setMarkRules(mark_rules);
-
         JSONArray fileArray = postResult.getJSONArray("taskFiles");
         for (int i = 0; i < fileArray.size(); i++) {
             JSONObject jsonFile = fileArray.getJSONObject(i);

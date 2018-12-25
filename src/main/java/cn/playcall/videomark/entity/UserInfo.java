@@ -8,11 +8,7 @@ public class UserInfo {
     private String taskid;
     private int pageSize;
     private int pageIndex;
-    private String mark_rules;
 
-    public String getMark_rules() {
-        return mark_rules;
-    }
 
     public String getType() {
         return type;
@@ -101,7 +97,6 @@ public class UserInfo {
                 ", taskid='" + taskid + '\'' +
                 ", pageSize=" + pageSize +
                 ", pageIndex=" + pageIndex +
-                ", mark_rules='" + mark_rules + '\'' +
                 ", total=" + total +
                 ", markRules='" + markRules + '\'' +
                 ", fileList=" + fileList +
