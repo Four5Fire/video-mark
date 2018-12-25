@@ -320,11 +320,11 @@ function checkfiles(id) {
                 document.getElementById("isbad").innerText="数据类型：坏数据";
             }
             if (data.checkStatus == 0){
-                document.getElementById("checkStatus").innerText="检查状态：待检查";
+                $('#checkStatus').text("检查状态：待检查");
             }else if (data.checkStatus == 1){
-                document.getElementById("checkStatus").innerText="检查状态：通过";
+                $('#checkStatus').text("检查状态：通过");
             }else if(data.checkStatus == 2){
-                document.getElementById("checkStatus").innerText="检查状态：打回";
+                $('#checkStatus').text("检查状态：打回");
                 reason = data.backReason;
             }
             document.getElementById("backReason").value=data.backReason;
@@ -335,6 +335,9 @@ function checkfiles(id) {
 }
 
 function jc_button(type) {
+    if (type == 1){
+        $('#backReason').val("");
+    }
     var backReason = document.getElementById("backReason").value;
     if (type == 0){
         if (backReason.length == 0){
@@ -354,11 +357,12 @@ function jc_button(type) {
         data:sss,
         contentType: 'application/json;charset=utf-8',
         success: function (data) {
+            $('#checkStatus').text("");
             if (data.retcode == "000000"){
-                if (type == 0){
-                    document.getElementById("checkStatus").innerText="检查状态：通过";
-                } else if (type == 1){
-                    document.getElementById("checkStatus").innerText="检查状态：打回";
+                if (type === 0){
+                    $('#checkStatus').text("检查状态：打回");
+                } else if (type === 1){
+                    $('#checkStatus').text("检查状态：通过");
                 }
             }
 
