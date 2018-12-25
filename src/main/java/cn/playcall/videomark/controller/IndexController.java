@@ -88,11 +88,12 @@ public class IndexController {
         String isbad = jsonObject.getString("isBad");
         jsonObject.remove("isBad");
         System.out.println(jsonObject);
+        String resultContent = JSON.toJSONString(jsonObject);
         String uid = userInfo.getUid();
         String fileId = (String) session.getAttribute("fileId");
         JSONObject resultStatus = new JSONObject();
-        resultStatus = HttpClient.postResult(uid,fileId,jsonObject,isbad);
-        System.out.println(resultStatus);
+        resultStatus = HttpClient.postResult(uid,fileId,resultContent,isbad);
+        System.out.println(resultContent);
         return new ResponseEntity<JSONObject>(resultStatus,HttpStatus.OK);
     }
 
