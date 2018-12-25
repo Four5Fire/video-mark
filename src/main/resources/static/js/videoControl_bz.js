@@ -170,7 +170,6 @@ jQuery.fn.videoControls = function () {
                             alert(data.retdesc);
                         },
                         error: function (data) {
-                            console.log(data);
                             alert("操作失败");
                         }
                     })
