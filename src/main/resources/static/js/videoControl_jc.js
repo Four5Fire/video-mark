@@ -314,6 +314,11 @@ function checkfiles(id) {
             $('#btnNoPass').show();
             $('#btnPass').show();
             $('#backReason').val(data.backReason);
+            if (data.isbad == 0){
+                document.getElementById("isbad").innerText="数据类型：好数据";
+            }else {
+                document.getElementById("isbad").innerText="数据类型：坏数据";
+            }
             if (data.checkStatus == 0){
                 document.getElementById("checkStatus").innerText="检查状态：待检查";
             }else if (data.checkStatus == 1){

@@ -50,8 +50,12 @@
         </ul>
     </div>
     <div style="text-align: center">
-        <p th:text="${mark_rules}"></p>
-        <label id="checkStatus"></label>
+        <div>
+            <p th:text="${mark_rules}"></p>
+            <p id="checkStatus"></p>
+            <p id="isbad"></p>
+        </div>
+
         <button class="button special bordered" data-dropdown="#dropdown-with-icons" id="files">文件列表</button>
         <button class="button special bordered" data-toggle="modal" data-target="#modalTB">标注结果</button>
         <span id="playing"></span>
@@ -74,6 +78,11 @@
                                 <th style="text-align: center;">开始时间</th>
                                 <th style="text-align: center;">结束时间</th>
                                 <th style="text-align: center;">标注结果</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </table>
                     </div>
