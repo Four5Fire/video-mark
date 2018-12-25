@@ -7,3 +7,16 @@ body {
 h1,h3 {
   text-align: center;
 }
+
+#annotations{
+    margin: auto;
+    border-collapse:collapse;
+    table-layout: fixed;
+}
+
+#annotations,th, td, tr{
+    text-align: center;
+    word-break: break-word;
+    width: 150px;
+    line-height: 44px;
+}

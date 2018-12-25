@@ -51,8 +51,15 @@ jQuery.fn.videoControls = function () {
                 '</div>' +
                 '<div>' +
                 '<button class="button blue" id="play">播放</button>' +
-                '<button class="button blue" onclick="jc_button(0)">打回</button>'+
-                '<button class="button blue" onclick="jc_button(1)">通过</button>'+
+                '<button id="btnNoPass" class="button blue" data-toggle="modal" data-target="#modalBack" style="display: none">打回</button>'+
+                '<button id="btnPass" class="button blue" data-toggle="modal" data-target="#modalPass" style="display: none">通过</button>'+
+                '<table id="annotations">' +
+                '<tr>' +
+                '<th>开始时间</th>' +
+                '<th>结束时间</th>' +
+                '<th>标记结果</th>' +
+                '</tr>'+
+                '</table>' +
                 '</div>'
             );
         //更新时间
@@ -207,14 +214,17 @@ jQuery.fn.videoControls = function () {
         instance.playhead = Math.round((instance.player.currentTime / instance.player.duration) * (instance.playbar_width - 10));
         instance.wrapper.find('.play_head').css('left', 5 + instance.playhead - (instance.playhead_width / 2) + 'px');
         var index;
+        var tabelHead = "<tr><th>开始时间</th><th>结束时间</th><th>标记结果</th></tr>"
         for (var i = 0;i<segaments.length;i++){
             index = "tr_"+i;
             if (curTime>=segaments[i]['start']&&curTime<=segaments[i]['end']){
                 document.getElementById(index).style.background = "yellow";
+                tabelHead += "<tr><td>"+formatTimer(segaments[i]['start'])+"</td><td>"+formatTimer(segaments[i]['end'])+"</td><td>"+segaments[i]['label']+"</td></tr>"
             }else {
                 document.getElementById(index).style.background="transparent";
             }
         }
+        document.getElementById("annotations").innerHTML = tabelHead;
     };
 
 
@@ -291,9 +301,9 @@ function checkfiles(id) {
             taskid = data.taskid;
             segaments = data.segaments;
             document.getElementById("resultTable").innerHTML = "<tr>\n" +
-                "            <th>开始时间</th>\n" +
-                "            <th>结束时间</th>\n" +
-                "            <th width='100'>标注结果</th>\n" +
+                "            <th style=\"text-align: center;\">开始时间</th>\n" +
+                "            <th style=\"text-align: center;\">结束时间</th>\n" +
+                "            <th width='33%' style=\"text-align: center;\">标注结果</th>\n" +
                 "        </tr>";
             segamentsSort();
             $('#annotations tr:not(:first)').html("");
@@ -301,6 +311,9 @@ function checkfiles(id) {
             $('#startP').text("");
             $('#dur').text("");
             $('#endP').text("");
+            $('#btnNoPass').show();
+            $('#btnPass').show();
+            $('#backReason').val(data.backReason);
             if (data.checkStatus == 0){
                 document.getElementById("checkStatus").innerText="检查状态：待检查";
             }else if (data.checkStatus == 1){
@@ -317,8 +330,13 @@ function checkfiles(id) {
 }
 
 function jc_button(type) {
-    alert("tonggu")
     var backReason = document.getElementById("backReason").value;
+    if (type == 0){
+        if (backReason.length == 0){
+            alert("请填写打回原因");
+            return;
+        }
+    }
     var sss = {
         status:type,
         file_id:fileId,

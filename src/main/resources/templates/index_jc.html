@@ -53,14 +53,14 @@
         <p th:text="${mark_rules}"></p>
         <label id="checkStatus"></label>
         <button class="button special bordered" data-dropdown="#dropdown-with-icons" id="files">文件列表</button>
-        <button class="button special bordered" data-toggle="modal" data-target="#myModal">标注结果</button>
+        <button class="button special bordered" data-toggle="modal" data-target="#modalTB">标注结果</button>
         <span id="playing"></span>
     </div>
 
     <video src="" data-framerate="25" width="50%" id="DEMO">
     </video>
-    <!-- 模态框（Modal） -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- 标注结果框 -->
+    <div class="modal fade" id="modalTB" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -84,8 +84,56 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
+            </div>
+        </div>
+    </div>
+
+    <!--打回框-->
+    <div class="modal fade" id="modalBack" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">打回原因</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <textarea id="backReason" style="resize:none;width: 80%;height: 200px;" placeholder="请填写打回原因" maxlength="254"></textarea>
+                    </div>
+
+
+                </div>
+                <div style="clear: both;"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="jc_button(0)">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--通过提示框-->
+    <div class="modal fade" id="modalPass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">操作提示</h4>
+                </div>
+                <div class="modal-body" style="width: 598px;height: 100px;">
+                    <div>
+                        <p style="padding: 30px;">确认提交</p>
+                    </div>
+
+
+                </div>
+                <div style="clear: both;"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="jc_button(1)">确定</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
