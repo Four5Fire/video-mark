@@ -16,8 +16,9 @@ table {
 
 table, th, td, tr
 {
-  word-break: break-word;
-  width: 150px;
-  line-height: 44px;
+    word-break: break-word;
+    width: 150px;
+    line-height: 44px;
+    text-align: center;
 }
 
