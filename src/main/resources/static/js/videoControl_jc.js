@@ -354,15 +354,18 @@ function jc_button(type) {
         data:sss,
         contentType: 'application/json;charset=utf-8',
         success: function (data) {
-            if (type == 0){
-                document.getElementById("checkStatus").innerText="检查状态：通过";
-            } else if (type == 1){
-                document.getElementById("checkStatus").innerText="检查状态：打回";
+            if (data.retcode == "000000"){
+                if (type == 0){
+                    document.getElementById("checkStatus").innerText="检查状态：通过";
+                } else if (type == 1){
+                    document.getElementById("checkStatus").innerText="检查状态：打回";
+                }
             }
-            alert("操作成功");
+
+            alert(data.retdesc);
         },
         error: function () {
-
+            alert("操作异常");
         }
     })
 }
