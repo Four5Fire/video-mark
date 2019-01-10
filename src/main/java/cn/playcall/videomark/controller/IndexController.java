@@ -93,7 +93,10 @@ public class IndexController {
         String fileId = (String) session.getAttribute("fileId");
         JSONObject resultStatus = new JSONObject();
         resultStatus = HttpClient.postResult(uid,fileId,resultContent,isbad);
-        System.out.println(resultContent);
+        System.out.println(resultStatus);
+        if (resultStatus.getString("retcode").equals("000000")){
+            userInfo.setFileListIsbad(fileId,Integer.parseInt(isbad));
+        }
         return new ResponseEntity<JSONObject>(resultStatus,HttpStatus.OK);
     }
 

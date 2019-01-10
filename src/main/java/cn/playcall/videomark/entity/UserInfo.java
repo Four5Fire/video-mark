@@ -89,6 +89,17 @@ public class UserInfo {
         return null;
     }
 
+    public void setFileListIsbad(String fileId,int isbad){
+        for (int i = 0; i < fileList.size(); i++) {
+            if (fileList.get(i).getId().equals(fileId)){
+                TaskFile taskFile= fileList.get(i);
+                taskFile.setIsbad(isbad);
+                fileList.set(i,taskFile);
+                break;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +

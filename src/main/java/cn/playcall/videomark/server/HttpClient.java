@@ -121,7 +121,6 @@ public class HttpClient {
         System.out.println(headers);
         try{
             postResult = restTemplate.postForEntity(s_result_api, httpEntity, JSONObject.class).getBody();
-            System.out.println(postResult);
         }finally {
             return postResult;
         }
