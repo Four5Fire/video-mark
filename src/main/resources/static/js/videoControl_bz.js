@@ -363,7 +363,12 @@ function checkfiles(id) {
             if (data.markStatus == 0){
                 document.getElementById("markStatus").innerText="标注状态：未标注";
             } else {
-                document.getElementById("markStatus").innerText="标注状态：已标注"
+                if(data.checkStatus == 2){
+                    document.getElementById("markStatus").innerText="标注状态：打回重新标注"
+                }else {
+                    document.getElementById("markStatus").innerText="标注状态：已标注"
+                }
+
             }
             if (data.checkStatus == 0){
                 document.getElementById("checkStatus").innerText="检查状态：待检查";
