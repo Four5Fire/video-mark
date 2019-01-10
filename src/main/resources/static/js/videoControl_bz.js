@@ -376,7 +376,8 @@ function checkfiles(id) {
                 reason = data.backReason;
                 $('#displayStatus').show();
             }
-
+            document.getElementById("isBad").options[0].selected=false;
+            document.getElementById("isBad").options[1].selected=false;
             document.getElementById("isBad").options[data.isbad].selected=true;
             $('#playing').text('正在播放：' + data.fileName);
             filename = data.fileName;

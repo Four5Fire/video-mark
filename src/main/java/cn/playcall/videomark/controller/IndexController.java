@@ -94,6 +94,10 @@ public class IndexController {
         JSONObject resultStatus = new JSONObject();
         resultStatus = HttpClient.postResult(uid,fileId,resultContent,isbad);
         System.out.println(resultContent);
+        if (!HttpClient.getTaskFiles(userInfo)){
+            session.setAttribute("userInfo",userInfo);
+            System.out.println("同步信息成功");
+        }
         return new ResponseEntity<JSONObject>(resultStatus,HttpStatus.OK);
     }
 
