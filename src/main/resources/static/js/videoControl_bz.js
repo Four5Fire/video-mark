@@ -51,7 +51,7 @@ jQuery.fn.videoControls = function () {
                 '<div>' +
                 '<button class="button blue" id="play">播放</button>' +
                 '<button class="button blue" id="A">放置裁切点</button>' +
-                '<select style="height: 40px" id="isBad"><option value="0" selected>好数据</option><option value="1">坏数据</option></select>'+
+                '<select style="height: 40px" id="isBad"><option value="0" >好数据</option><option value="1">坏数据</option></select>'+
                 '</div>' +
                 '<table>' +
                 '<tr><td colspan=5>当前时间</td><td colspan=10 id="timer"></td></tr>' +

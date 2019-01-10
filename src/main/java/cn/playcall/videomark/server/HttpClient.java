@@ -68,7 +68,7 @@ public class HttpClient {
         JSONObject postData = new JSONObject();
         postData.put("uid", uid);
         postData.put("taskid", taskid);
-        postData.put("pagesize","20");
+        postData.put("pagesize","1000");
         postData.put("pageindex","1");
         HttpEntity<JSONObject> httpEntity = new HttpEntity<>(postData,headers);
         RestTemplate restTemplate = new RestTemplate();
