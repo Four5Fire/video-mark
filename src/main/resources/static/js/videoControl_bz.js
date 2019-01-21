@@ -24,7 +24,6 @@ jQuery.fn.videoControls = function () {
         instance.player.file_name = instance.file_name;
         instance.player.cutin = 0;
         instance.player.cutout = -1;
-        console.log('instance: ', instance);
 
         //用div标签对video进行包装，类别为video-player，后续对video-player而非video进行操作
         instance.playerj.wrap('<div class="video_player"/>');
@@ -158,9 +157,7 @@ jQuery.fn.videoControls = function () {
                         segaments: annotations,
                         isBad:$("#isBad option:selected").val()
                     };
-                    console.log(annotations);
                     sss = JSON.stringify(sss);
-                    console.log(sss);
                     $.ajax({
                         type:'POST',
                         url:'/casia/result',
@@ -181,7 +178,6 @@ jQuery.fn.videoControls = function () {
         });
 
         instance.player.addEventListener("ended", function () {
-            console.log(instance.player.ended);
             instance.wrapper.find('#play').removeClass('play').addClass('pause').text('重播');
         });
     };
@@ -358,7 +354,6 @@ function checkfiles(id) {
         data: '{"fileId":"' + id + '"}',
         contentType: 'application/json;charset=utf-8',
         success: function (data) {
-            console.log(data);
             document.getElementById("DEMO").src = data.cdnAddress;
             if (data.markStatus == 0){
                 document.getElementById("markStatus").innerText="标注状态：未标注";

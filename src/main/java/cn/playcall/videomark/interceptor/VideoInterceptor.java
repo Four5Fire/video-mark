@@ -14,7 +14,6 @@ public class VideoInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession(false);
         if (session == null){
-            System.out.println("Illegal user login");
             return false;
         }else {
             UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");

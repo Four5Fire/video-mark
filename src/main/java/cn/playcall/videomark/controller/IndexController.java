@@ -24,7 +24,6 @@ public class IndexController {
     public String taskFile(HttpServletRequest request,ModelMap map){
         HttpSession session = request.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-        System.out.println(userInfo);
         map.addAttribute("fileList",userInfo.getFileList());
         map.addAttribute("mark_rules","标注规范："+userInfo.getMarkRules());
         if (userInfo.getType().equals("mark")){
@@ -61,13 +60,11 @@ public class IndexController {
         }
         jsonObject.put("backReason",taskFile.getBackReason());
         if (userInfo.getType().equals("check")){
-            System.out.println(taskFile.getResultTxt());
             JSONObject jsonTaskResult = JSONObject.parseObject(taskFile.getResultTxt());
             JSONArray jsonArraySegaments = jsonTaskResult.getJSONArray("segaments");
             jsonObject.put("segaments",jsonArraySegaments);
             jsonObject.put("backReason",taskFile.getBackReason());
         }else if (userInfo.getType().equals("mark")){
-            System.out.println("--------------------");
             if (taskFile.getResultTxt() == null){
                 JSONArray jsonArray = new JSONArray();
                 jsonObject.put("segaments",jsonArray);
@@ -76,7 +73,6 @@ public class IndexController {
                 JSONArray jsonArray = jsonObject1.getJSONArray("segaments");
                 jsonObject.put("segaments",jsonArray);
             }
-            System.out.println(jsonObject);
         }
         return new ResponseEntity<JSONObject>(jsonObject,HttpStatus.OK);
     }
@@ -87,13 +83,11 @@ public class IndexController {
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
         String isbad = jsonObject.getString("isBad");
         jsonObject.remove("isBad");
-        System.out.println(jsonObject);
         String resultContent = JSON.toJSONString(jsonObject);
         String uid = userInfo.getUid();
         String fileId = (String) session.getAttribute("fileId");
         JSONObject resultStatus = new JSONObject();
         resultStatus = HttpClient.postResult(uid,fileId,resultContent,isbad);
-        System.out.println(resultStatus);
         if (resultStatus.getString("retcode").equals("000000")){
             userInfo.setFileListIsbad(fileId,Integer.parseInt(isbad));
         }
@@ -107,7 +101,6 @@ public class IndexController {
         jsonObject.put("uid",userInfo.getUid());
         JSONObject resultStatus = new JSONObject();
         resultStatus = HttpClient.postCheckResult(jsonObject);
-        System.out.println(resultStatus);
         return new ResponseEntity<JSONObject>(resultStatus,HttpStatus.OK);
     }
 

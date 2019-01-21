@@ -80,7 +80,6 @@ public class HttpClient {
         String mark_rules = (String) postResult.get("mark_rules");
         userInfo.setMarkRules(mark_rules);
         JSONArray fileArray = postResult.getJSONArray("taskFiles");
-        System.out.println(fileArray);
         for (int i = 0; i < fileArray.size(); i++) {
             JSONObject jsonFile = fileArray.getJSONObject(i);
             userInfo.addFile(new TaskFile(jsonFile.get("id"), jsonFile.get("isbad"),
@@ -114,11 +113,9 @@ public class HttpClient {
         postData.put("file_id",fileId);
         postData.put("back_reason","");
         postData.put("checkStatus",0);
-        System.out.println(postData);
         HttpEntity<JSONObject> httpEntity = new HttpEntity<>(postData,headers);
         RestTemplate restTemplate = new RestTemplate();
         JSONObject postResult = new JSONObject();
-        System.out.println(headers);
         try{
             postResult = restTemplate.postForEntity(s_result_api, httpEntity, JSONObject.class).getBody();
         }finally {

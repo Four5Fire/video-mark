@@ -13,7 +13,6 @@ public class ResultInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession(false);
         if (session == null){
-            System.out.println("user no session");
             return false;
         }
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");

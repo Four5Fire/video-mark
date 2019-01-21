@@ -26,13 +26,6 @@ public class IndexInterceptor extends HandlerInterceptorAdapter {
         String unixTime = request.getParameter("time");
         String token = request.getParameter("token");
 
-        System.out.println(type);
-        System.out.println(uid);
-        System.out.println(taskid);
-        System.out.println(salt);
-        System.out.println(unixTime);
-        System.out.println(token);
-
         if (uid.length()==0||taskid.length()==0||salt.length()==0||unixTime.length()==0||token.length()==0||type.length()==0){
             response.sendError(422);
             return false;
